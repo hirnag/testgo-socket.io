@@ -1,0 +1,24 @@
+version: '3'
+services:
+  server_go:
+    hostname: server_go
+    build: server_go
+    working_dir: '/go/src/app'
+    command: go run server.go
+    volumes:
+      - ./server_go:/go/src/app
+    ports:
+      - 5000:5000
+    tty: true
+  server_node:
+    image: node:latest
+    hostname: server_node
+    build: server_node
+    working_dir: '/usr/local/src/app'
+    command: sh start_cmd.sh
+    volumes:
+      - ./server_node:/usr/local/src/app
+    ports:
+      - 5001:5001
+    tty: true
+
